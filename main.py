@@ -2,6 +2,7 @@ import telebot
 from telebot.util import content_type_media
 
 import config
+from inline_kinzhagaleev import inline_kinzhagaleev
 
 from help import help
 
@@ -19,6 +20,16 @@ bot = telebot.TeleBot(config.token)
 def command_start(message):
     bot.send_message(message.chat.id, "Приветствую вас!")
     bot.send_message(message.chat.id, "Чего желаете?")
+@bot.message_handler(commands=['inline'])
+
+def inline(message):
+    inline_kinzhagaleev(message, bot, types)
+
+
+
+
+
+
 
 @bot.message_handler(commands=['help'])
 def command_help(message):
@@ -45,3 +56,4 @@ def wiki(message):
 
 
 bot.infinity_polling()
+
