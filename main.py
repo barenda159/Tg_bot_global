@@ -1,4 +1,6 @@
 import telebot
+from telebot.util import content_type_media
+
 import config
 from ugadaika_kondratev import ugadaika_kondratev
 
@@ -12,14 +14,20 @@ from wiki_Sukhanov import wiki_Sukhanov, get_wiki_Sukhanov
 bot = telebot.TeleBot(config.token)
 
 @bot.message_handler(commands=['start'])
-def start(message):
+def command_start(message):
     bot.send_message(message.chat.id, "Приветствую вас!")
     bot.send_message(message.chat.id, "Чего желаете?")
+
 
 
 @bot.message_handler(commands=["ugadaika"])
 def ugadaika(message):
     ugadaika_kondratev(message, bot)
+
+
+@bot.message_handler(content_types=['text'])
+def feedback(message):
+    bot.reply_to(message, "К вашим услугам")
 
 
 
