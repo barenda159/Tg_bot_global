@@ -2,9 +2,13 @@ import telebot
 from telebot.util import content_type_media
 
 import config
+
+from ugadaika_kondratev import ugadaika_kondratev
+
 from inline_kinzhagaleev import inline_kinzhagaleev
 
 from help import help
+
 
 
 from test_klyuew import test_klyuew
@@ -37,9 +41,16 @@ def command_help(message):
 
 
 
+
+@bot.message_handler(commands=["ugadaika"])
+def ugadaika(message):
+    ugadaika_kondratev(message, bot)
+
+
 @bot.message_handler(content_types=['text'])
 def feedback(message):
     bot.reply_to(message, "К вашим услугам")
+
 
 
 @bot.message_handler(commands=["test"])
