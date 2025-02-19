@@ -1,4 +1,6 @@
 import telebot
+from telebot.util import content_type_media
+
 import config
 
 from test_klyuew import test_klyuew
@@ -10,9 +12,14 @@ from wiki_Sukhanov import wiki_Sukhanov, get_wiki_Sukhanov
 bot = telebot.TeleBot(config.token)
 
 @bot.message_handler(commands=['start'])
-def start(message):
+def command_start(message):
     bot.send_message(message.chat.id, "Приветствую вас!")
     bot.send_message(message.chat.id, "Чего желаете?")
+
+
+@bot.message_handler(content_types=['text'])
+def feedback(message):
+    bot.reply_to(message, "К вашим услугам")
 
 
 @bot.message_handler(commands=["test"])
@@ -24,6 +31,7 @@ def klyew(message):
 def wiki(message):
     wiki_Sukhanov(message, bot)
     get_wiki_Sukhanov(message)
+
 
 
 bot.infinity_polling()
