@@ -3,6 +3,8 @@ from telebot.util import content_type_media
 
 import config
 
+from tamoke import tamoke , get_tamoke
+
 from ugadaika_kondratev import ugadaika_kondratev
 
 from inline_kinzhagaleev import inline_kinzhagaleev
@@ -15,6 +17,7 @@ from test_klyuew import test_klyuew
 from telebot import types
 
 from wiki_Sukhanov import wiki_Sukhanov, get_wiki_Sukhanov
+
 
 
 
@@ -66,5 +69,11 @@ def wiki(message):
 
 
 
+
+
+
+def tamoke(message,types):
+    get_tamoke()
 bot.infinity_polling()
+
 
